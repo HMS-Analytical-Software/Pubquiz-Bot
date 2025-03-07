@@ -46,20 +46,69 @@ llm_reason = AzureChatOpenAI(
 
 db = Chroma(persist_directory="./PubDatabase/chroma", embedding_function=embeddings)
 
+from langchain.chains.retrieval import create_retrieval_chain
+from langchain.prompts import ChatPromptTemplate
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from langchain_core.runnables import RunnablePassthrough
+from langchain.tools import Tool
+
+prompt = ChatPromptTemplate.from_template("""Answer the following question based only on the provided context:
+
+<context>
+{context}
+</context>
+
+Question: {input}""")
+
+document_prompt = ChatPromptTemplate.from_template("""Content: {page_content}                             
+Source: {source}""")
+
+document_chain = create_stuff_documents_chain(
+    llm=llm,
+    prompt=prompt,
+    document_prompt=document_prompt,
+)
+
+retriever = db.as_retriever()
+retrieval_chain = create_retrieval_chain(retriever, document_chain)
+
+tool_retrieval_chain = {"input": RunnablePassthrough()} | retrieval_chain
+
+retrieval_tool = Tool(
+    name="retrieval_tool",
+    func=tool_retrieval_chain.invoke,
+    description="Use this tool to retrieve information from budget documentation. Only search for one word facts!",
+)
+
 agent_prompt = SystemMessage(content="""
 You are participating in a pubquiz.
 Answer the question as short as possible.
 Cite the source in brackets [<source>].""")
 
 agent = create_react_agent(
-    tools=[], model=llm, prompt=agent_prompt,
+    tools=[retrieval_tool], model=llm, prompt=agent_prompt,
 )
 
+def tool_call_from_message(message):
+    if 'tool_calls' in message.additional_kwargs:
+        call = message.additional_kwargs['tool_calls']
+        try:
+            call = message.additional_kwargs['tool_calls'][0]
+            print(call)
+            print(call['function'])
+            return f"Called {call['function']['name']} with input {call['function']['arguments']}"
+        except Exception as e:
+            print(e)
+    if message.content:
+        return message.content
+    return ""
+ 
+ 
 if prompt := st.chat_input():
     st.chat_message("human").write(prompt)
     # Note: new messages are saved to history automatically by Langchain during run
     response = agent.invoke({
         "messages": prompt,
     })
-    print('\n'.join([f"{message.__class__.__name__}: {str(message)}" for message in response["messages"]]))
+    print('\n'.join([f"{message.__class__.__name__}: {tool_call_from_message(message)}" for message in response["messages"]]))
     st.chat_message("ai").write(response["messages"][-1].content)

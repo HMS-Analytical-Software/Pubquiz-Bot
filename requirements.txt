@@ -5,7 +5,7 @@ langchain_community==0.3.16
 langchain_openai==0.3.6
 langgraph==0.2.69
 openai==1.61.0
-chromadb==0.6.3
+langchain_chroma
 tiktoken==0.8.0
 duckduckgo-search==7.3.0
 numexpr==2.10.2

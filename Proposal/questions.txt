@@ -1,0 +1,59 @@
+# examples
+
+Which colleagues do I need to contact, if I am sick?  # manager, immediate team members
+What are the steps to do, when I loose my password? 
+Who is the new CEO at Tech Innovators and in which year did that change? John Smith 2019
+What are the total earnings of 2018-2020?  # 54 mil
+Summarize the user guide 2016 for a 5 year old
+Which elements depicted in the user guide image, is not described in the user guide 2016?
+What is the most expensive item sold ny Tech Innovators?  # Tech Innovators Smart Home System
+Which customers for music are located outside of the US?
+How many invoices are associated with each music employee?
+In Deutschland verbraucht jeder Mensch im Jahr durchschnittlich 350 kg Holz (Papier, Brennholz, Möbel usw.). Ein Festmeter Holz (ein m³ vollgefüllt) wiegt etwa 700 kg. Ein hundertjähriger Baum hat ca. 2,5 Festmeter. Ein Menschenleben dauert etwa 75 Jahre. Wie viel wiegt ein solcher Baum? In welcher Zeit verbraucht man das Holz eines 100-jährigen Baumes? Wie viel solche Bäume verbrauchen wir im Leben? Wie viele „Baumjahre" verbrauchen wir im Leben?  # Ergebnis: 1.) 1750 kg      2.) 5 Jahren      3.) 15 Bäume       4.) 1500 Baumjahre
+What is the integral of x^2 from 0 to 10  # 333.33
+When does the press conference "Autism rethought!" today start?  # The press conference "Autism rethought!" starts today at 11:15 a.m. [source: DuckDuckGo Search]
+
+
+# test
+
+How much was earned by selling tracks in the years 2017 and 2019?
+$1201.86 in 2017
+$1221.66 in 2019
+[Source: SQL Database]
+
+
+How much money was spend on team events in total until 2022?
+135k [Team Event Image]
+
+
+Who was the speaker at the press conference of the Special European Council meeting yesterday?
+The speaker at the press conference of the Special European Council meeting on March 6, 2025, was President António Costa. [Source: DuckDuckGo Search]
+
+
+What are the lowest user review marks in each year?
+The lowest user review mark in 2018 is 2/5. [../PubTexts/reports/feedback2018.txt]
+
+
+Why did Jane Smith have to pay more than John Doe?
+Jane Smith had to pay more than John Doe because her total amount due was 660.00,whileJohnDoe′stotalamountduewas660.00,whileJohnDoe′stotalamountduewas550.00. This difference is due to the higher cost of the items and services listed in Jane Smith's invoice compared to John Doe's invoice.
+Sources:
+Jane Smith's invoice: [../PubTexts/reports/invoice4.txt]
+John Doe's invoice: [../PubTexts/reports/invoice5.txt]
+
+
+When is a dip in the team event budget, and how is it explainable?
+The dip in the team event budget occurred in 2020, dropping significantly from around 35 thousand in 2019 to approximately 10 thousand in 2020. This dip can be explained by the impact of the COVID-19 pandemic, which disrupted global operations and required rapid adaptation to remote work and new business strategies, as highlighted in the Tech Innovators Inc. Annual Report 2020 [../PubTexts/reports/annual2020.txt].
+
+
+What is the next prime after the multiple of the two highest invoice counts of music employees?
+The next prime number after the multiple of the two highest invoice counts (214 * 212 = 45368) is 45377.
+Sources:
+[MusicDB Tables: employee, customer, invoice]
+[Reasoning Model]
+
+
+In which musicdb playlist is the song by queen which was in the charts 36 years ago?
+The song "I Want It All" by Queen is found in the "Music" playlist in the MusicDb.
+[DuckDuckGo]
+[MusicDb]
+
