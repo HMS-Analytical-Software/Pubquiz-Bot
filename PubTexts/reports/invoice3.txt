@@ -1,0 +1,42 @@
+Invoice
+
+Tech Innovators Inc.
+123 Innovation Drive
+Tech City, TX 12345
+Phone: (123) 456-7890
+Email: info@techinnovators.com
+
+Bill To:
+Michael Brown
+321 Tech Park
+Innovate Town, FL 98765
+Phone: (654) 321-0987
+Email: michaelbrown@example.com
+
+Invoice Number: 2024-004
+Invoice Date: August 5, 2024
+Due Date: August 19, 2024
+
+Tabelle
+
+Description	Quantity	Unit Price	Total
+Tech Innovators Smart Home System	1	$700.00	$700.00
+Smart Hub | 1 | $150.00 | $150.00
+Smart Lights | 8 | $25.00 | $200.00
+Smart Thermostat | 2 | $100.00 | $200.00
+Smart Security Camera | 4 | $50.00 | $200.00
+Smart Door Lock | 2 | $50.00 | $100.00
+Mobile App | 1 | $50.00 | $50.00
+Subtotal: | | | $700.00
+Tax (10%): | | | $70.00
+Total Amount Due: | | | $770.00
+
+Payment Instructions:
+Please make the payment by the due date to the following account:
+Bank Name: Tech Bank
+Account Number: 123456789
+Routing Number: 987654321
+
+For any questions regarding this invoice, please contact us at (123) 456-7890 or email info@techinnovators.com.
+
+Thank you for your business!

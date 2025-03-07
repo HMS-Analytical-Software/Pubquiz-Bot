@@ -1,0 +1,42 @@
+Invoice
+
+Tech Innovators Inc.
+123 Innovation Drive
+Tech City, TX 12345
+Phone: (123) 456-7890
+Email: info@techinnovators.com
+
+Bill To:
+John Doe
+456 Tech Avenue
+Innovation City, CA 67890
+Phone: (987) 654-3210
+Email: johndoe@example.com
+
+Invoice Number: 2024-002
+Invoice Date: August 5, 2024
+Due Date: August 19, 2024
+
+Tabelle
+
+Description	Quantity	Unit Price	Total
+Tech Innovators Smart Home System	1	$500.00	$500.00
+Smart Hub | 1 | $150.00 | $150.00
+Smart Lights | 4 | $25.00 | $100.00
+Smart Thermostat | 1 | $100.00 | $100.00
+Smart Security Camera | 2 | $50.00 | $100.00
+Smart Door Lock | 1 | $50.00 | $50.00
+Mobile App | 1 | $50.00 | $50.00
+Subtotal: | | | $500.00
+Tax (10%): | | | $50.00
+Total Amount Due: | | | $550.00
+
+Payment Instructions:
+Please make the payment by the due date to the following account:
+Bank Name: Tech Bank
+Account Number: 123456789
+Routing Number: 987654321
+
+For any questions regarding this invoice, please contact us at (123) 456-7890 or email info@techinnovators.com.
+
+Thank you for your business!

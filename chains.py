@@ -1,24 +1,22 @@
 from functools import partial
 
-from langchain.chains import LLMChain
 from langchain.chains.combine_documents import collapse_docs, split_list_of_docs
-from langchain.chat_models import AzureChatOpenAI
-from langchain.docstore.document import Document
 from langchain.prompts import PromptTemplate
 from langchain.schema import StrOutputParser
+from langchain_core.documents import Document
 from langchain_core.prompts import format_document
-from langchain_core.runnables import RunnableParallel, RunnablePassthrough
+from langchain_core.runnables import Runnable, RunnableParallel, RunnablePassthrough
+from langchain_openai.chat_models import AzureChatOpenAI
 
 
-def create_map_reduce_chain(llm: AzureChatOpenAI, document_prompt: PromptTemplate, summary_prompt: PromptTemplate) -> LLMChain:
-
+def create_map_reduce_chain(llm: AzureChatOpenAI, document_prompt: PromptTemplate, prompt: PromptTemplate) -> Runnable:
     partial_format_document = partial(format_document, prompt=document_prompt)
 
     # The chain we'll apply to each individual document.
     # Returns a summary of the document.
     map_chain = (
         {"context": partial_format_document}
-        | summary_prompt
+        | prompt
         | llm
         | StrOutputParser()
     )
@@ -48,7 +46,7 @@ def create_map_reduce_chain(llm: AzureChatOpenAI, document_prompt: PromptTemplat
     def collapse(
         docs,
         config,
-        token_max=4000,
+        token_max=400,
     ):
         collapse_ct = 1
         while get_num_tokens(docs) > token_max:

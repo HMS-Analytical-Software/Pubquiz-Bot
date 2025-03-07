@@ -1,69 +1,65 @@
 import os
-from langchain.chat_models import AzureChatOpenAI
-from langchain.agents import initialize_agent, AgentType
-from langchain.embeddings.azure_openai import AzureOpenAIEmbeddings
-from langchain.tools import Tool
-from langchain.vectorstores.chroma import Chroma
+import streamlit as st
 
-from openai import AzureOpenAI
+from langchain_core.messages import SystemMessage
+from langchain_chroma.vectorstores import Chroma
+from langchain_openai.embeddings import AzureOpenAIEmbeddings
+from langchain_openai.chat_models import AzureChatOpenAI
+from langgraph.prebuilt import create_react_agent
 
 from dotenv import load_dotenv
-load_dotenv()
+load_dotenv(override=True)
 
-# LLM
-azure_api_key = os.getenv('AZURE_OPENAI_API_KEY')
-azure_endpoint = os.getenv('AZURE_OPENAI_ENDPOINT')
+
+st.title("Pubquiz-Bot")
+
+azure_version = "2024-06-01"
+azure_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
+azure_reasoning = os.getenv("AZURE_OPENAI_REASONING")
+azure_embeddings = os.getenv("AZURE_OPENAI_EMBEDDINGS")
+azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+azure_key = os.getenv("AZURE_OPENAI_KEY")
 
 llm = AzureChatOpenAI(
-    api_key=azure_api_key,
-    api_version="2023-05-15",
-    azure_deployment="gpt-35-turbo-16k",
+    temperature=0.1,
+    top_p=1.0,
+    azure_deployment=azure_deployment,
+    api_key=azure_key,
+    azure_endpoint=azure_endpoint,
+    api_version=azure_version,
+)
+
+embeddings = AzureOpenAIEmbeddings(
+    api_key=azure_key,
+    api_version=azure_version,
+    azure_deployment=azure_embeddings,
     azure_endpoint=azure_endpoint,
 )
 
-llm.invoke("What do you know about Pub Quizzes?")
-
-# Chroma db
-embeddings = AzureOpenAIEmbeddings(
-    api_key=azure_api_key,
-    api_version="2023-05-15",
-    azure_deployment="text-embedding-ada-002",
+llm_reason = AzureChatOpenAI(
+    api_key=azure_key,
+    api_version=azure_version,
+    azure_deployment=azure_reasoning,
+    model=azure_deployment,
     azure_endpoint=azure_endpoint,
 )
 
 db = Chroma(persist_directory="./PubDatabase/chroma", embedding_function=embeddings)
 
-# Example Agent
+agent_prompt = SystemMessage(content="""
+You are participating in a pubquiz.
+Answer the question as short as possible.
+Cite the source in brackets [<source>].""")
 
-qa_tool = Tool.from_function(
-    func=llm.invoke,
-    name="QA",
-    description="Tool to answer a question",
+agent = create_react_agent(
+    tools=[], model=llm, prompt=agent_prompt,
 )
 
-PREFIX = """You are participating in a pubquiz. Answer in a short sentence."""
-agent = initialize_agent(
-    tools=[qa_tool],
-    llm=llm,
-    agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-    verbose=True,
-    return_intermediate_steps=True,
-    handle_parsing_errors=True,
-    agent_kwargs={
-        'prefix': PREFIX
-    }
-)
-
-agent.invoke("What do you know about Pub Quizzes?")
-
-# whisper
-
-azure_api_key_whisper = os.getenv('AZURE_OPENAI_API_KEY_WHISPER')
-azure_endpoint_whisper = os.getenv('AZURE_OPENAI_ENDPOINT_WHISPER')
-
-whisper = AzureOpenAI(
-    api_key=azure_api_key_whisper,
-    azure_endpoint=azure_endpoint_whisper,
-    azure_deployment="whisper",
-    api_version="2023-09-01-preview",
-)
+if prompt := st.chat_input():
+    st.chat_message("human").write(prompt)
+    # Note: new messages are saved to history automatically by Langchain during run
+    response = agent.invoke({
+        "messages": prompt,
+    })
+    print('\n'.join([f"{message.__class__.__name__}: {str(message)}" for message in response["messages"]]))
+    st.chat_message("ai").write(response["messages"][-1].content)

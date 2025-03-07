@@ -1,0 +1,12 @@
+Which colleagues do I need to contact, if I am sick?  # manager, immediate team members
+What are the steps to do, when I loose my password? 
+Who is the new CEO at Tech Innovators and in which year did that change? John Smith 2019
+What are the total earnings of 2018-2020?  # 54 mil
+Summarize the user guide 2016 for a 5 year old
+Which elements depicted in the user guide image, is not described in the user guide 2016?
+What is the most expensive item sold ny Tech Innovators?  # Tech Innovators Smart Home System
+Which customers for music are located outside of the US?
+How many invoices are associated with each music employee?
+In Deutschland verbraucht jeder Mensch im Jahr durchschnittlich 350 kg Holz (Papier, Brennholz, Möbel usw.). Ein Festmeter Holz (ein m³ vollgefüllt) wiegt etwa 700 kg. Ein hundertjähriger Baum hat ca. 2,5 Festmeter. Ein Menschenleben dauert etwa 75 Jahre. Wie viel wiegt ein solcher Baum? In welcher Zeit verbraucht man das Holz eines 100-jährigen Baumes? Wie viel solche Bäume verbrauchen wir im Leben? Wie viele „Baumjahre" verbrauchen wir im Leben?  # Ergebnis: 1.) 1750 kg      2.) 5 Jahren      3.) 15 Bäume       4.) 1500 Baumjahre
+What is the integral of x^2 from 0 to 10  # 333.33
+When does the press conference "Autism rethought!" today start?  # The press conference "Autism rethought!" starts today at 11:15 a.m. [source: DuckDuckGo Search]
