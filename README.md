@@ -1,6 +1,6 @@
 # Hackathon-Pubquiz
 
-In this repository you can find starter code and data for the Pubquiz Hackathon!
+In this repository you can find starter code and data for the Pubquiz Bot!
 
 Please create a virtual environment and install the requirements.txt:
 
@@ -13,18 +13,24 @@ pip install -r requirements.txt
 Make sure to create a .env file with 
 
 ```
-AZURE_OPENAI_API_KEY=
-AZURE_OPENAI_ENDPOINT=
-AZURE_OPENAI_API_KEY_WHISPER=
-AZURE_OPENAI_ENDPOINT_WHISPER=
+AZURE_OPENAI_KEY=
+AZURE_OPENAI_ENDPOINT=https://openai-workshop-genai.openai.azure.com/
+AZURE_OPENAI_DEPLOYMENT=gpt4o
+AZURE_OPENAI_REASONING=o1-mini
+AZURE_OPENAI_EMBEDDINGS=embeddings-large
+
 ```
 
 which will be provided for you.
 
 # Data
 
-PubAudio are audio files which might be relevnat for the Quiz
+PubSql is a sql database which might be relevant for the Quiz
 
-PubDatabase is a working Chroma database to be loaded. Note: You need to use the embeddings provided in quiz.py, or the database will not load.
+PubImages are images which might be relevant for the Quiz
 
-PubTexts are texts which might be relevnat for the Quiz
+PubTexts are texts which might be relevant for the Quiz
+
+# Questions
+
+examples_questions.txt are some possible questions for the quiz
